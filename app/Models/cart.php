@@ -11,8 +11,11 @@ class Cart extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'quantity',
-
-
    ];
+   public function order()
+   {
+       return $this->hasOne(Order::class);
+   }
 }

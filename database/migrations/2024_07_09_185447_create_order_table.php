@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user')->constrained()->onDelete('cascade');
-            $table->foreignId('cart')->nullable()->constrained()->onDelete('set null');
+            $table->unsignedBigInteger('cart_id')->unique();
             $table->decimal('total');
             $table->timestamps();
+
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
 
         });
     }

@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
         'image',
         'description',
@@ -19,6 +20,11 @@ class Product extends Model
 
     public function categories(){
         return $this->belongsToMany(Category::class);
+    }
+
+    public function itemOrder()
+    {
+        return $this->belongsTo(ItemOrder::class, 'product_id');
     }
 
 }
